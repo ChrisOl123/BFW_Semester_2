@@ -1,14 +1,14 @@
 ﻿using System;
 
-/*namespace BFW_Semester_2
+namespace BFW_Semester_2
 {
-    class Program
+    class Aufgabe_1
     {
-        static void Main(string[] args)
+        public static void Start()
         {
-            Console.WriteLine(Aufgabe_1(14, 3));
+            Console.WriteLine(Div(14, 3));
         }
-        static string Aufgabe_1(int num1, int num2)
+        static string Div(int num1, int num2)
         {
             int erg = num1 / num2;
             int rest = num1 % num2;
@@ -17,4 +17,3 @@
     }
 }
 
-*/

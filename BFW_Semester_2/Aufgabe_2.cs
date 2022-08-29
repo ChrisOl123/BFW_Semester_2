@@ -2,9 +2,9 @@
 
 namespace BFW_Semester_2
 {
-    internal class Aufgabe_2
+    class Aufgabe_2
     {
-        static void Main(string[] args)
+        public static void Start()
         {
             while (true)
             {
@@ -13,7 +13,7 @@ namespace BFW_Semester_2
                 Console.WriteLine("Bitte erste Zahl eingeben.");
                 if (!int.TryParse(Console.ReadLine(), out zahl1))
                 {
-                    Console.WriteLine("Falsche Eingabe!");
+                    Console.WriteLine("Leider war die Eingabe nicht valide.");
                     continue;
                 }
                 while (true)
@@ -21,17 +21,17 @@ namespace BFW_Semester_2
                     Console.WriteLine("Bitte zweite Zahl eingeben.");
                     if (!int.TryParse(Console.ReadLine(), out zahl2))
                     {
-                        Console.WriteLine("Falsche Eingabe!");
+                        Console.WriteLine("Leider war die Eingabe nicht valide.");
                         continue;
                     }
                     else
                         break;
                 }
-                Console.WriteLine(Aufgabe_1(zahl1, zahl2));
+                Console.WriteLine(Div(zahl1, zahl2));
                 Console.WriteLine();
             }
         }
-        static string Aufgabe_1(int num1, int num2)
+        static string Div(int num1, int num2)
         {
             int erg = num1 / num2;
             int rest = num1 % num2;

@@ -4,7 +4,11 @@ using System.Text;
 
 namespace BFW_Semester_2
 {
-    internal class Aufgabe_3
+    class Program
     {
+        static void Main(string[] args)
+        {
+            Aufgabe_5.Start();
+        }
     }
 }
