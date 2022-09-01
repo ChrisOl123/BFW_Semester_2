@@ -14,8 +14,14 @@ namespace BFW_Semester_2
             int num = -1;
             int temp = 0;
             foreach (var element in input)
+                num = NewMethod(liste, ref temp, element);
+        }
+
+        private static int NewMethod(List<string> liste, ref int temp, char element)
+        {
+            int num;
             {
-                if(int.TryParse(element.ToString(), out num))
+                if (int.TryParse(element.ToString(), out num))
                 {
                     temp *= 10;
                     temp += num;
@@ -27,10 +33,8 @@ namespace BFW_Semester_2
                 }
 
             }
-            static string Plus()
-            {
-                return "";
-            }
+
+            return num;
         }
     }
 }

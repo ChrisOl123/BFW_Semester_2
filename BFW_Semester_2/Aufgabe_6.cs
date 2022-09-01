@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace BFW_Semester_2
@@ -12,18 +15,9 @@ namespace BFW_Semester_2
             List<Countries> coun = new List<Countries>();
 
             Console.WriteLine("Bitte geben Sie einen Ländernamen ein:");
-            string input = Console.ReadLine();
+            string input = Console.ReadLine().Trim();
+            Array arr = Enum.GetValues(typeof(Countries));
 
-            foreach(Countries element in Enum.GetValues(typeof(Countries)))
-            {
-                if(input == element.ToString())
-                {
-                   // if (coun.Contains())
-                    {
 
-                    }
-                }
-            }
-        }
+        } 
     }
-}
