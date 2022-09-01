@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BFW_Semester_2
 {
@@ -27,12 +26,8 @@ namespace BFW_Semester_2
                     liste.Add(element.ToString());
                 }
 
-                if (element == '+')
-                {
-                    Plus(Convert.ToInt32(liste[0]),Convert.ToInt32(liste[1]));
-                }
             }
-            static string Plus(int temp, int temp_2)
+            static string Plus()
             {
                 return "";
             }
