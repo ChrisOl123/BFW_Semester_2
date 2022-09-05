@@ -6,7 +6,7 @@ namespace BFW_Semester_2
     class Aufgabe_5
     {
         public static void Start()
-        {
+        { 
             while (true)
             {
                 List<string> liste = new List<string>();
@@ -63,7 +63,7 @@ namespace BFW_Semester_2
                         c = 1;
                         if (element == "+")
                         {
-                            zwischen = Convert.ToDouble(liste[c - 1]) + Convert.ToDouble(liste[c + 1]);
+                            zwischen = Plus(liste,c,zwischen);
                             b = true;
                             break;
                         }
@@ -84,7 +84,8 @@ namespace BFW_Semester_2
                 Console.WriteLine();
             }
         }
-        public static void Speichern(List<string> liste, bool b, int c, double zwischen)
+
+        private static void Speichern(List<string> liste, bool b, int c, double zwischen)
         {
             if (liste.Count > 1 && b == true)
             {
@@ -94,6 +95,12 @@ namespace BFW_Semester_2
                 liste.RemoveAt(c - 1);
                 b = false;
             }
+        }
+
+        private static double Plus(List<string> liste, int c, double zwischen)
+        {
+            zwischen = Convert.ToDouble(liste[c - 1]) + Convert.ToDouble(liste[c + 1]);
+            return zwischen;
         }
     }
 }
