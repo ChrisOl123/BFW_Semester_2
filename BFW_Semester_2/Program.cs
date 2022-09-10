@@ -8,6 +8,7 @@ namespace BFW_Semester_2
     {
         static void Main(string[] args)
         {
+            Aufgabe_7.Start();
             Aufgabe_24.Start();
         }
     }

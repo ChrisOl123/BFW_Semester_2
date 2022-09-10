@@ -38,12 +38,12 @@ namespace BFW_Semester_2
                             {
                                 Console.WriteLine("Dieses Land ist schon vorhanden. Soll dieses gelöscht werden? (y/n)");
                                 string yorn = Console.ReadLine();
-                                if (yorn == "y" || yorn == "Y")
+                                if (yorn.ToLower() == "y")
                                 {
                                     coun.Remove(element);
                                     Console.WriteLine(element + " wurde entfernt.");
                                 }
-                                else if (yorn == "n" || yorn == "N")
+                                else if (yorn.ToLower() == "n")
                                     break;
                                 else
                                 {

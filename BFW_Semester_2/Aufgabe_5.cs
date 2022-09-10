@@ -45,13 +45,13 @@ namespace BFW_Semester_2
                     {
                         if (element == "*")
                         {
-                            zwischen = Convert.ToDouble(liste[c - 1]) * Convert.ToDouble(liste[c + 1]);
+                            zwischen = Mal(liste, c);
                             b = true;
                             break;
                         }
                         else if (element == "/")
                         {
-                            zwischen = Convert.ToDouble(liste[c - 1]) / Convert.ToDouble(liste[c + 1]);
+                            zwischen = Geteilt(liste, c);
                             b = true;
                             break;
                         }
@@ -63,13 +63,13 @@ namespace BFW_Semester_2
                         c = 1;
                         if (element == "+")
                         {
-                            zwischen = Convert.ToDouble(liste[c - 1]) + Convert.ToDouble(liste[c + 1]);
+                            zwischen = Plus(liste, c);
                             b = true;
                             break;
                         }
                         else if (element == "-")
                         {
-                            zwischen = Convert.ToDouble(liste[c - 1]) - Convert.ToDouble(liste[c + 1]);
+                            zwischen = Minus(liste, c);
                             b = true;
                             break;
                         }
@@ -84,6 +84,7 @@ namespace BFW_Semester_2
                 Console.WriteLine();
             }
         }
+
         public static void Speichern(List<string> liste, bool b, int c, double zwischen)
         {
             if (liste.Count > 1 && b == true)
@@ -94,6 +95,27 @@ namespace BFW_Semester_2
                 liste.RemoveAt(c - 1);
                 b = false;
             }
+        }
+
+        public static double Mal(List<string> liste, int c)
+        {
+            double zwischen = Convert.ToDouble(liste[c - 1]) * Convert.ToDouble(liste[c + 1]);
+            return zwischen;
+        }
+        public static double Geteilt(List<string> liste, int c)
+        {
+            double zwischen = Convert.ToDouble(liste[c - 1]) / Convert.ToDouble(liste[c + 1]);
+            return zwischen;
+        }
+        public static double Plus(List<string> liste, int c)
+        {
+            double zwischen = Convert.ToDouble(liste[c - 1]) + Convert.ToDouble(liste[c + 1]);
+            return zwischen;
+        }
+        public static double Minus(List<string> liste, int c)
+        {
+            double zwischen = Convert.ToDouble(liste[c - 1]) - Convert.ToDouble(liste[c + 1]);
+            return zwischen;
         }
     }
 }

@@ -1,71 +1,75 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BFW_Semester_2
 {
-    public class Aufgabe_6Alternate
+    internal class Aufgabe_6Alternate
     {
-        enum Countries { Deutschland, Österreich, Schweiz, Italien, Niederlande }
+        enum Countries { Deutschland, Österreich, Schweiz, Italien, Polen }
 
+        static List<Countries> CountryList = new List<Countries>();
         public static void Start()
         {
-            var listCountries = new List<Countries>();
-            Array values = Enum.GetValues(typeof(Countries));
+            while (true)
+                registercountry(getuserinput());
+        }
 
-            PrintEnumList(values);
+        static Countries getuserinput()
+        {
+            Console.WriteLine("Bitte ein Land eingeben:");
 
             while (true)
             {
-                Console.WriteLine("Bitte geben Sie einen Ländernamen ein: ");
-                string str = Console.ReadLine();
-
-                if (str == "")
+                string userinput = Console.ReadLine().Trim();
+                //Ausgabe falls leer
+                if (userinput == "")
                 {
-                    if (listCountries.Count > 0)
-                    {
-                        Console.WriteLine("\nHier sind alle Länder:");
-                        for (int i = 0; i < listCountries.Count; i++)
-                            Console.WriteLine(i + 1 + ": " + listCountries[i]);
-                    }
-                    else
-                        Console.WriteLine("\nEs sind noch keine Länder in Ihrer Liste!");
+                    showList();
+                    Console.WriteLine("Bitte ein Land eingeben:");
+                    continue;
                 }
-                else
-                {
-                    bool isCountry = false;
-                    foreach (Countries val in values)
-                    {
-                        if (str == Enum.GetName(typeof(Countries), val))
-                        {
-                            if (listCountries.Contains(val))
-                            {
-                                Console.WriteLine("\nLöschen (y/n)?");
-                                string input = Console.ReadLine();
-                                if (input == "y")
-                                    listCountries.Remove(val);
-                            }
-                            else
-                                listCountries.Add(val);
 
-                            isCountry = true;
-                        }
+                //Prüfung: Ist das Land im Enum erhalten?
+                foreach (Countries element in Enum.GetValues(typeof(Countries)))
+                {
+                    if (element.ToString().ToUpper() == userinput.ToUpper())
+                    {
+                        return element;
                     }
-                    if (!isCountry)
-                        Console.WriteLine("\nLeider wurde das Land nicht erkannt...");
                 }
-                Console.WriteLine();
+
+                Console.WriteLine("Leider befindet sich das Land nicht in unserer Liste.... :(");
+                Console.WriteLine("Bitte wiederholen Sie Ihre Eingabe (aber bitte diesmal richtig!):");
             }
         }
-
-        private static void PrintEnumList(Array values)
+        static void registercountry(Countries country)
         {
-            Console.Write("Mögliche Länder: ");
+            for (int i = 0; i < CountryList.Count; i++)
+            {
+                if (country == CountryList[i])
+                {
+                    Console.WriteLine("Nutzer! Möchten Sie dieses Land aus der Liste entfernen? Denn dieses Land ist bereits enthalten... (y = löschen)");
+                    if (Console.ReadLine().ToLower() == "y")
+                        CountryList.RemoveAt(i);
+                    return;
+                }
+            }
 
-            foreach (Countries val in values)
-                Console.Write(val + " ");
+            CountryList.Add(country);
+        }
 
-            Console.WriteLine("\n\n");
+        static void showList()
+        {
+            if (CountryList.Count == 0)
+            {
+                Console.WriteLine("Leider ist die Liste leer... Hey, befüllen Sie sie doch :)");
+                return;
+            }
+
+            Console.WriteLine("Hier sind Ihre Länder:");
+            foreach (var element in CountryList)
+                Console.WriteLine(element.ToString());
         }
     }
 }
+
