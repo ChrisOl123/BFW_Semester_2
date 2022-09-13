@@ -2,7 +2,7 @@
 
 namespace BFW_Semester_2
 {
-    class Aufgabe_8
+    internal class Aufgabe_8
     {
         public static void Start()
         {
@@ -16,35 +16,32 @@ namespace BFW_Semester_2
         }
         static void Analyze(string str)
         {
-            Console.WriteLine("Das Übergebene Element ist ein String mit der Länge {0}.", str.Length);
+            Console.WriteLine("Das übergebene Element in ein String mit der Länge {0}.", str.Length);
         }
-        static void Analyze(int zahl)
+        static void Analyze(int inte)
         {
-            Console.WriteLine("Das Übergebene Element ist ein Integer. Dieser hat {0} Stellen.", zahl.ToString().Length);
+            Console.WriteLine("Das übergebene Element in ein Integer. Dieser hat {0} Stellen.", inte.ToString().Length);
         }
-        static void Analyze(char cha)
+        static void Analyze(char c)
         {
-            Console.WriteLine("Das Übergebene Element ist ein Character mit der dezimalen Codierung {0}.", (int)cha);
+            Console.WriteLine("Das übergebene Element in ein Charakter mit der dezimalen Codierung {0}.", (int)c);
         }
         static void Analyze(double d)
         {
+            string doppel = d.ToString();
             int res = 0;
-            int i = 0;
-            if (d % 1 == 0)
+            if (d % 1 == 0)           // überprüfen ob die Zahl durch 1 Teilbar ist
                 res = 0;
             else
-            {
-                foreach (var element in d.ToString())
+                for (int i = 0; i < doppel.Length; i++)
                 {
-                    if (element.ToString() == ",")
+                    if (doppel[i].ToString() == ",")        // Nachkommastellen ermitteln
                     {
-                        string temp = d.ToString().Substring(i, d.ToString().Length - (i + 1));
+                        string temp = doppel.Substring(i, doppel.Length - (i + 1));
                         res = temp.Length;
                     }
-                    i++;
                 }
-                Console.WriteLine("Das Übergebene Element ist ein Double. Dieser hat {0} Nachkommastellen.", res);
-            }
+            Console.WriteLine("Das übergebene Element in ein Double. Dieser hat {0} Nachkommastellen.", res);
         }
     }
 }
