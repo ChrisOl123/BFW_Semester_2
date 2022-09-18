@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace BFW_Semester_2
 {
-    public enum Marken { Audi, Mercedes, BMW, Nissan, VW }
+    public enum Marken { Audi, BMW, Mercedes, Nissan, VW }
     public enum Sitze { Stoff, Leder, Samt, Kunststoff, Holz };
     public enum Color { Rot, Blau, Grün, Gelb, Lila, Pink, Grau, Silber }
     internal class Aufgabe_9
@@ -40,7 +40,7 @@ namespace BFW_Semester_2
 
             
             Console.Clear();
-            Console.WriteLine("Das Auto ist ein {0}, besitzt die Farbe {1} und ist {2} Meter lang.", auto.Marke, auto.Farbe, auto.Länge);
+            Console.WriteLine("Das {0}. Auto ist ein {1}, besitzt die Farbe {2} und ist {3} Meter lang.", (int)auto.Marke+1, auto.Marke, auto.Farbe, auto.Länge);
             Console.WriteLine("Es besitzt {0} Sitze und eine Leistung von {1} KW.", auto.Sitz, auto.KW);
             Console.WriteLine("Das Radio ist {0}.", auto.Radio);
             if (auto.Radio == "an")
