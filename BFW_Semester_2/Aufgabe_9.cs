@@ -16,40 +16,44 @@ namespace BFW_Semester_2
                 new Auto(Marken.BMW, Color.Silber, 4.20) { Sitz = Sitze.Samt, KW = 140 }, 
                 new Auto(Marken.Mercedes, Color.Grau, 5.30) };
 
-            foreach (var element in carList)            // 3x Nach vorne fahren
-                element.Fahren(3);
 
+            DriveThree(carList);                        // 3x nach vorne 
 
             carList[0].RadioAnAus(true);                // Radio einschalten
             carList[0].Lautstärke(10);
             carList[0].Lautstärke(-3);                  // Lautstärke erst auf 10 stellen und dann um 3 reduzieren
 
-            carList[1].Temperatur(22);
+            carList[1].Temperatur(22);                  // Temperatur auf 22 stellen
 
-            foreach (var element in carList)            // 3x Nach vorne fahren
-                element.Fahren(3);
+            DriveThree(carList);                        // 3x nach vorne fahren
 
             carList[2].Temperatur(20);                  // Temperatur auf 20 stellen
 
+            Console.ReadKey();
 
-
-            Console.ReadLine();
-            Ausgabe(carList[0]);
-            Ausgabe(carList[1]);                        // Ausgabe 
-            Ausgabe(carList[2]);
+            foreach (var element in carList)            // Ausgabe 
+                Ausgabe(element);
         }
-        public static void Ausgabe(Auto auto)
+        static void Ausgabe(Auto auto)
         {
             Console.Clear();
             Console.WriteLine("Das {0}. Auto ist ein {1}, besitzt die Farbe {2} und ist {3} Meter lang.", (int)auto.Marke+1, auto.Marke, auto.Farbe, auto.Länge);
             Console.WriteLine("Es besitzt {0} Sitze und eine Leistung von {1} KW.", auto.Sitz, auto.KW);
             Console.WriteLine("Das Radio ist {0}.", auto.Radio);
+
             if (auto.Radio == "an")
                 Console.WriteLine("Die Radiolautstärke beträgt {0}.", auto.RadioLaut);
+
             if (auto.Temper != 0)
                 Console.WriteLine("Die Temperatureinstellung des {0} lautet {1}°C.", auto.Marke, auto.Temper);
+
             Console.WriteLine("Der {0} ist insgesamt {1} Meter gefahren", auto.Marke, auto.Gefahren);
-            Console.ReadLine();
+            Console.ReadKey();
+        }
+        static void DriveThree(List<Auto> carList)
+        {
+            foreach (var element in carList)            // 3x nach vorne fahren
+                element.Fahren(3);
         }
     }
     public class Auto
