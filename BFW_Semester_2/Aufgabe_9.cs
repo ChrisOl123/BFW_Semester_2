@@ -1,44 +1,45 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Linq;
 
 namespace BFW_Semester_2
 {
     public enum Marken { Audi, BMW, Mercedes, Nissan, VW }
-    public enum Sitze { Stoff, Leder, Samt, Kunststoff, Holz };
+    public enum Sitze { Stoff, Leder, Samt, Kunststoff, Holz };                       // Enum´s erstellen
     public enum Color { Rot, Blau, Grün, Gelb, Lila, Pink, Grau, Silber }
     internal class Aufgabe_9
     {
         public static void Start()
         {
-            Auto car_1 = new Auto(Marken.Audi, Color.Blau, 4.60) { Sitz = Sitze.Leder, KW = 160 };
-            Auto car_2 = new Auto(Marken.BMW, Color.Silber, 4.20) { Sitz = Sitze.Samt, KW = 140 };
-            Auto car_3 = new Auto(Marken.Mercedes, Color.Grau, 5.30);
+            List<Auto> carList = new List<Auto> { 
+                new Auto(Marken.Audi, Color.Blau, 4.60) { Sitz = Sitze.Leder, KW = 160 },       // Liste mit 3 Autos erstellen die jeweils verschiedene Werte erhalten
+                new Auto(Marken.BMW, Color.Silber, 4.20) { Sitz = Sitze.Samt, KW = 140 }, 
+                new Auto(Marken.Mercedes, Color.Grau, 5.30) };
 
-            car_1.Fahren(3);
-            car_2.Fahren(3);
-            car_3.Fahren(3);
+            foreach (var element in carList)            // 3x Nach vorne fahren
+                element.Fahren(3);
 
-            car_1.RadioAnAus(true);
-            car_1.Lautstärke(10);
-            car_1.Lautstärke(-3);
 
-            car_2.Temperatur(22);
+            carList[0].RadioAnAus(true);                // Radio einschalten
+            carList[0].Lautstärke(10);
+            carList[0].Lautstärke(-3);                  // Lautstärke erst auf 10 stellen und dann um 3 reduzieren
 
-            car_1.Fahren(3);
-            car_2.Fahren(3);
-            car_3.Fahren(3);
+            carList[1].Temperatur(22);
 
-            car_3.Temperatur(20);
+            foreach (var element in carList)            // 3x Nach vorne fahren
+                element.Fahren(3);
+
+            carList[2].Temperatur(20);                  // Temperatur auf 20 stellen
+
+
 
             Console.ReadLine();
-            Ausgabe(car_1);
-            Ausgabe(car_2);
-            Ausgabe(car_3);
+            Ausgabe(carList[0]);
+            Ausgabe(carList[1]);                        // Ausgabe 
+            Ausgabe(carList[2]);
         }
         public static void Ausgabe(Auto auto)
         {
-
-            
             Console.Clear();
             Console.WriteLine("Das {0}. Auto ist ein {1}, besitzt die Farbe {2} und ist {3} Meter lang.", (int)auto.Marke+1, auto.Marke, auto.Farbe, auto.Länge);
             Console.WriteLine("Es besitzt {0} Sitze und eine Leistung von {1} KW.", auto.Sitz, auto.KW);
@@ -47,7 +48,7 @@ namespace BFW_Semester_2
                 Console.WriteLine("Die Radiolautstärke beträgt {0}.", auto.RadioLaut);
             if (auto.Temper != 0)
                 Console.WriteLine("Die Temperatureinstellung des {0} lautet {1}°C.", auto.Marke, auto.Temper);
-            Console.WriteLine("Der {0} ist {1} Meter gefahren", auto.Marke, auto.Gefahren);
+            Console.WriteLine("Der {0} ist insgesamt {1} Meter gefahren", auto.Marke, auto.Gefahren);
             Console.ReadLine();
         }
     }
@@ -62,13 +63,13 @@ namespace BFW_Semester_2
         public string Radio = "aus";
         public int Temper;
         public int Gefahren;
-        public Auto(Marken marke, Color farbe, double länge)
+        public Auto(Marken marke, Color farbe, double länge)   // Konstruktor 
         {
             Marke = marke;
             Farbe = farbe;
             Länge = länge;
         }
-        public void Fahren(int anzahl)
+        public void Fahren(int anzahl)                         // Methoden
         {
             Gefahren += anzahl * KW * 2;
             Console.WriteLine("Der {0} fährt {1} mal nach vorne und erreicht {2} Meter.", Marke, anzahl, Gefahren);
