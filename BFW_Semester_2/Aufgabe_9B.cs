@@ -8,37 +8,50 @@ namespace BFW_Semester_2
         public static void Start()
 
         {
+            List<Tuple<string, int>> liste = new List<Tuple<string, int>>();
+
             Console.WriteLine("Bitte geben Sie Wörter ein:");
-            while (true)
-            {
 
-                string input = Console.ReadLine().Trim();
+            Input(liste);
 
-                if (input == string.Empty)
-                {
-                    List<string> str = new List<string>();
-                }
-                else
-                {
-
-                }
-            }
+            Ausgabe(liste);
         }
-        static Tuple<string, int> In(string input)
+        static Tuple<string, int> Selbstlautprüf(string input)
         {
             int counter = 0;
-            string[] selbst = new string[] { "A", "a", "E", "e", "I", "i", "O", "o", "U", "u" };
-            for (int i = 0; i < input.Length; i++)
+            string[] selbst = new string[] {"a", "e", "i", "o", "u" };
+
+            for (int i = 0; i < selbst.Length; i++)
                 foreach (var element in input)
                 {
-                    if (element.ToString() == selbst[i])
+                    if (element.ToString().ToLower() == selbst[i])
                         counter++;
                 }
-
-
             Tuple<string, int> tuple = new Tuple<string, int>(input, counter);
-
             return tuple;
+        }
+        static void Ausgabe(List<Tuple<string, int>> tuples)
+        {
+            for (int i = 0; i < tuples.Count; i++)
+            {
+                if (tuples[i].Item2 == 0)
+                    Console.WriteLine("Das Wort '" + tuples[i].Item1 +"' hat keine Selbstlaute.");
+                else if (tuples[i].Item2 == 1)
+                    Console.WriteLine("Das Wort '"+ tuples[i].Item1 + "' hat einen Selbstlaut.");
+                else
+                    Console.WriteLine("Das Wort '"+ tuples[i].Item1 + "' hat "+ tuples[i].Item2 + " Selbstlaute.");
+            }
+        }
+        static void Input(List<Tuple<string, int>> liste)
+        {
+            while (true)
+            {
+                string input = Console.ReadLine().Trim();
+                if (input == string.Empty)
+                    break;
+                else
+                    liste.Add(Selbstlautprüf(input));
+            }
         }
     }
 }
