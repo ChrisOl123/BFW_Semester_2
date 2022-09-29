@@ -19,7 +19,6 @@ namespace BFW_Semester_2
             new Tuple<Mög, Mög, string>(Mög.Spock, Mög.Stein, "Spock verdampft Stein."),
             new Tuple<Mög, Mög, string>(Mög.Stein, Mög.Schere, "Stein schleift Schere.")
         };
-
         public static void Start()
         {
             int player = 0;
