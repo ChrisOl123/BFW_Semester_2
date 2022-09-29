@@ -11,7 +11,7 @@ namespace BFW_Semester_2
             new Tuple<Mög, Mög, string>(Mög.Schere, Mög.Papier, "Schere schneidet Papier."),
             new Tuple<Mög, Mög, string>(Mög.Papier, Mög.Stein, "Papier bedeckt Stein."),
             new Tuple<Mög, Mög, string>(Mög.Stein, Mög.Echse, "Stein zerquetscht Echse."),
-            new Tuple<Mög, Mög, string>(Mög.Echse, Mög.Spock, "Echse vergiftet Spock."),
+            new Tuple<Mög, Mög, string>(Mög.Echse, Mög.Spock, "Echse vergiftet Spock."),        // Regeln in Tuple in einer Liste
             new Tuple<Mög, Mög, string>(Mög.Spock, Mög.Schere, "Spock zertrümmert Schere."),
             new Tuple<Mög, Mög, string>(Mög.Schere, Mög.Echse, "Schere köpft Echse."),
             new Tuple<Mög, Mög, string>(Mög.Echse, Mög.Papier, "Echse frisst Papier."),
@@ -48,16 +48,13 @@ namespace BFW_Semester_2
                         computer++;
                         break;
                     }
-
                 }
             }
         }
-
         static Tuple<Mög, Mög> Input(int player, int computer,string erg)
         {
-            Mög compinput = (Mög)(new Random(DateTime.Now.Millisecond).Next() % 5);
+            Mög compinput = (Mög)(new Random(DateTime.Now.Millisecond).Next() % 5);   // Erstellen einer Zufallszahl
             Mög input;
-            int zahl;
             Console.Clear();
             Console.WriteLine("Ihre Punkte: {0} - Punkte Computer: {1}", player, computer);
             Console.WriteLine(erg);
@@ -67,7 +64,8 @@ namespace BFW_Semester_2
             Console.WriteLine("Bitte geben Sie einene Wert ein: ");
             while (true)
             {
-                if (!int.TryParse(Console.ReadLine(), out zahl) || zahl > 4 || zahl < 0)
+                int zahl;
+                if (!int.TryParse(Console.ReadLine(), out zahl) || zahl > 4 || zahl < 0)     // Eingabe überprüfen 
                     Console.WriteLine("Invalide Eingabe");
                 else
                 {
