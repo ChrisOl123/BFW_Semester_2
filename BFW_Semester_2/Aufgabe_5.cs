@@ -13,6 +13,9 @@ namespace BFW_Semester_2
                 List<int> erglist = new List<int>();
                 Console.WriteLine("Welche Rechnung möchten sie Durchführen");
                 string input = Console.ReadLine().Trim();
+                if (input == "")
+                    continue;
+
                 int num = -1;
                 int temp = 0;
                 int counter = 1;

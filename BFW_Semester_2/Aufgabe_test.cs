@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BFW_Semester_2
 {
-    class Program
+
+    internal class Aufgabe_test
     {
-        static void Main(string[] args)
+        public static void Start()
         {
-            Aufgabe_test.Start();
         }
     }
 }
