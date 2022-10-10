@@ -50,7 +50,7 @@ namespace BFW_Semester_2
                 }
             }
         }
-        static Tuple<Mög, Mög> Input(int player, int computer,string erg)
+        static Tuple<Mög, Mög> Input(int player, int computer,string erg)              //erstellen einer Methode
         {
             Mög compinput = (Mög)(new Random(DateTime.Now.Millisecond).Next() % 5);   // Erstellen einer Zufallszahl
             Mög input;

@@ -8,6 +8,7 @@ namespace BFW_Semester_2
     {
         public static void Start()
         {
+
         }
     }
 }

@@ -8,7 +8,7 @@ namespace BFW_Semester_2
     {
         static void Main(string[] args)
         {
-            Aufgabe_test.Start();
+            Aufgabe_11.Start();
         }
     }
 }
