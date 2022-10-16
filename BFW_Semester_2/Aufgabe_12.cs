@@ -7,14 +7,16 @@ namespace BFW_Semester_2
         public static void Start()
         {
             int input_1;
+            string input_2;
             int input_3 = 0;
-            int res;
+            int erg;
+            int rest = 0;
             while (true)
             {
                 Console.WriteLine("Bitte geben Sie die erste Zahl ein:");
                 try
                 {
-                  input_1 = Convert.ToInt32(Console.ReadLine());
+                    input_1 = Convert.ToInt32(Console.ReadLine());
                 }
                 catch
                 {
@@ -25,12 +27,9 @@ namespace BFW_Semester_2
                 Console.WriteLine("Bitte geben Sie das Rechenzeichen ein:");
                 try
                 {
-                    string input_2 = Console.ReadLine();
+                    input_2 = Console.ReadLine();
                     if (!(input_2 == "/" || input_2 == "+" || input_2 == "*" || input_2 == "-"))
-                    {
-                        string[] arr = new string[0];
-                        arr[1] = input_2;
-                    }
+                        erg = Convert.ToInt32(input_2) / 0;
                 }
                 catch
                 {
@@ -42,12 +41,30 @@ namespace BFW_Semester_2
                 try
                 {
                     input_3 = Convert.ToInt32(Console.ReadLine());
-                    res = input_1 / input_3;
-                    Console.WriteLine("Ihre Rechnung: {0} / {1} = {2}",input_1,input_3,res);
+                    if (input_2 == "/")
+                    {
+                        erg = input_1 / input_3;
+                        rest = input_1 % input_3;
+                    }
+                    else if (input_2 == "*")
+                        erg = input_1 * input_3;
+                    else if (input_2 == "-")
+                        erg = input_1 - input_3;
+                    else
+                        erg = input_1 + input_3;
+                    if (input_1 % input_3 != 0 && input_2 == "/")
+                        Console.WriteLine("Ihre Rechnung: {0} {1} {2} = {3} Rest {4}", input_1, input_2, input_3, erg, rest);
+                    else
+                        Console.WriteLine("Ihre Rechnung: {0} {1} {2} = {3}", input_1, input_2, input_3, erg);
+                    Console.WriteLine();
                 }
                 catch
                 {
-                    Console.WriteLine("Durch {0} teilen ist leider nicht möglich!",input_3);
+                    if (input_3 == 0)
+                        Console.WriteLine("Durch {0} teilen ist leider nicht möglich!", input_3);
+                    else
+                        Console.WriteLine("Leider ist ein Fehler aufgetreten geben Sie andere Zahlen ein.");
+                    Console.WriteLine();
                     Console.WriteLine();
                     continue;
                 }
