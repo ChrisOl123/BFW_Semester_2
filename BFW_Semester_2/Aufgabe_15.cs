@@ -2,7 +2,7 @@
 
 namespace BFW_Semester_2
 {
-    enum Alf { empty ,A, B, C, D, E, F, G, H, I, J }
+    enum Alf { empty, A, B, C, D, E, F, G, H, I, J }
     class Aufgabe_15
     {
         public static void Start()
@@ -34,12 +34,11 @@ namespace BFW_Semester_2
                 { 0 , 0 , 0 , 1 , 0 , 0 , 0 , 0 , 0 , 0 },
                 { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
             };
-
             while (true)
             {
+                
                 AnzeigeFeld(feldfront);
-                Tuple<Alf, int> tuple = (Input());
-                Verarbeitung(tuple,feldback,feldfront);
+                Verarbeitung(Input(), feldback, feldfront);
             }
         }
         static void AnzeigeFeld(string[,] feldfront)
@@ -63,29 +62,31 @@ namespace BFW_Semester_2
 
                 Console.WriteLine("Welches Feld möchten Sie bombardieren? [Buchstabe][Zahl] z.B. A1.");
                 string input = Console.ReadLine().Trim();
-
-                foreach (Alf element in arr)
+                if (input != string.Empty)
                 {
-                    if (element.ToString() == input[0].ToString().ToUpper() && input.Length <= 3)
+                    foreach (Alf element in arr)
                     {
-                        buchstabe = element;
-                        b = true;
-                    }
-                }
-                if (b)
-                {
-                    for (int i = 0; i < input.Length; i++)
-                    {
-                        if (int.TryParse(input[i].ToString(), out int zahl))
+                        if (element.ToString() == input[0].ToString().ToUpper() && input.Length <= 3)
                         {
-                            temp *= 10;
-                            temp += zahl;
+                            buchstabe = element;
+                            b = true;
                         }
                     }
-                    if (temp > 0 && temp <= 10)
+                    if (b)
                     {
-                        Tuple<Alf, int> tuple = new Tuple<Alf, int>(buchstabe, temp);
-                        return tuple;
+                        for (int i = 0; i < input.Length; i++)
+                        {
+                            if (int.TryParse(input[i].ToString(), out int zahl))
+                            {
+                                temp *= 10;
+                                temp += zahl;
+                            }
+                        }
+                        if (temp > 0 && temp <= 10)
+                        {
+                            Tuple<Alf, int> tuple = new Tuple<Alf, int>(buchstabe, temp);
+                            return tuple;
+                        }
                     }
                 }
                 Console.WriteLine("Invalide Eingabe!");
@@ -93,10 +94,10 @@ namespace BFW_Semester_2
         }
         static void Verarbeitung(Tuple<Alf, int> tuple, int[,] feldback, string[,] feldfront)
         {
-            
-            int spalte = (int)tuple.Item1-1;
-            int zeile = tuple.Item2-1;
-            if (feldback[spalte,zeile] == 0)
+
+            int spalte = (int)tuple.Item1 - 1;
+            int zeile = tuple.Item2 - 1;
+            if (feldback[spalte, zeile] == 0)
             {
                 Console.WriteLine("Ziel verfehlt");
                 feldfront[spalte + 2, zeile + 2] = "$";
@@ -105,7 +106,7 @@ namespace BFW_Semester_2
             {
                 Console.WriteLine("Ziel getroffen");
                 feldback[spalte, zeile] = 2;
-                feldfront[spalte+2, zeile+2] = "X";
+                feldfront[spalte + 2, zeile + 2] = "X";
 
             }
             else if (feldback[spalte, zeile] == 2)
