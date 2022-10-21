@@ -44,7 +44,7 @@ namespace BFW_Semester_2
             for (int i = spielzüge; i > 0;i--)
             {
                 AnzeigeFeld(feldfront, message);
-                Console.WriteLine("Sie habe {0} Züge übrig.",i);
+                Console.WriteLine("Sie habe {0} Schüsse übrig.",i);
                 message = Verarbeitung(Input(), feldback, feldfront);
                 if (zerstört.Count == 4)
                 {
@@ -58,7 +58,6 @@ namespace BFW_Semester_2
                 Console.Clear();
                 Console.WriteLine("Leider haben Sie verloren :(");
             }
-
         }
         static void AnzeigeFeld(string[,] feldfront, string message)
         {
@@ -69,6 +68,7 @@ namespace BFW_Semester_2
                     Console.Write(" " + feldfront[i, 0 + i2]);
                 Console.WriteLine();
             }
+            Console.WriteLine();
             Console.Write("Zerstörte Schiffe: ");
             foreach (var element in zerstört)
                 Console.Write(element);
@@ -136,7 +136,7 @@ namespace BFW_Semester_2
                 string ship = string.Empty;
                 if (s2 == 2)
                 {
-                    ship = "Schnellboot versenkt";
+                    ship = "Schnellboot versenkt.";
                     zerstört.Add("Schnellboot, ");
                 }
                 feldback[spalte, zeile] = 9;
@@ -149,7 +149,7 @@ namespace BFW_Semester_2
                 string ship = string.Empty;
                 if (s3 == 3)
                 {
-                    ship = "Fregatte versenkt";
+                    ship = "Fregatte versenkt.";
                     zerstört.Add("Fregatte, ");
                 }
 
@@ -163,7 +163,7 @@ namespace BFW_Semester_2
                 string ship = string.Empty;
                 if (s4 == 4)
                 {
-                    ship = "Kreuzer versenkt";
+                    ship = "Kreuzer versenkt.";
                     zerstört.Add("Kreuzer, ");
                 }
                 feldback[spalte, zeile] = 9;
@@ -176,7 +176,7 @@ namespace BFW_Semester_2
                 string ship = string.Empty;
                 if (s5 == 5)
                 {
-                    ship = "Schlachtschiff versenkt";
+                    ship = "Schlachtschiff versenkt.";
                     zerstört.Add("Schlachtschiff, ");
                 }
                 feldback[spalte, zeile] = 9;
