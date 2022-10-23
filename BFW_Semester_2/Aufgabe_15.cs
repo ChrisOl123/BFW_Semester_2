@@ -69,7 +69,7 @@ namespace BFW_Semester_2
                 int spalte = new Random().Next(0, 8);
                 int zeile = new Random(DateTime.Now.Millisecond).Next() % 8;
 
-                if (feldback[spalte, zeile] == 0 || feldback[spalte + 1, zeile] == 0 || feldback[spalte + 2, zeile] == 0)
+                if (feldback[spalte, zeile] == 0 && feldback[spalte + 1, zeile] == 0 && feldback[spalte + 2, zeile] == 0)
                 {
                     feldback[spalte, zeile] = 3;
                     feldback[spalte + 1, zeile] = 3;
