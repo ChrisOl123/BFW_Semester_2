@@ -31,16 +31,18 @@ namespace BFW_Semester_2
             };
             int[,] feldback = new int[10, 10] {
                 { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
-                { 3 , 3 , 3 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },                  // Schlachtschiff 5 Felder      Kreuzer 4 Felder        Fregatte 3 Felder          Schnellboot 2 Felder    
-                { 0 , 0 , 0 , 0 , 0 , 0 , 5 , 0 , 0 , 0 },
-                { 0 , 0 , 0 , 0 , 0 , 0 , 5 , 0 , 0 , 0 },
-                { 0 , 0 , 0 , 0 , 0 , 0 , 5 , 0 , 0 , 0 },
-                { 0 , 0 , 0 , 4 , 0 , 0 , 5 , 0 , 0 , 0 },
-                { 0 , 0 , 0 , 4 , 0 , 0 , 5 , 0 , 0 , 0 },
-                { 0 , 0 , 0 , 4 , 0 , 0 , 0 , 0 , 2 , 2 },
-                { 0 , 0 , 0 , 4 , 0 , 0 , 0 , 0 , 0 , 0 },
+                { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },                  // Schlachtschiff 5 Felder      Kreuzer 4 Felder        Fregatte 3 Felder          Schnellboot 2 Felder    
+                { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
+                { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
+                { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
+                { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
+                { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
+                { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
+                { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
                 { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
             };
+
+            Randomizer(feldback, feldfront);
             for (int i = spielzüge; i > 0; i--)
             {
                 AnzeigeFeld(feldfront, message);
@@ -57,6 +59,27 @@ namespace BFW_Semester_2
             {
                 Console.Clear();
                 Console.WriteLine("Leider haben Sie verloren :(");
+            }
+        }
+        static void Randomizer(int[,] feldback, string[,] feldfront)
+        {
+            while (true)
+            {
+                int vOrH = new Random(DateTime.Now.Millisecond).Next(0, 2);  // 1 = Vertikal, 2 = Hoizontal
+                int spalte = new Random().Next(0, 8);
+                int zeile = new Random(DateTime.Now.Millisecond).Next() % 8;
+
+                if (feldback[spalte, zeile] == 0 || feldback[spalte + 1, zeile] == 0 || feldback[spalte + 2, zeile] == 0)
+                {
+                    feldback[spalte, zeile] = 3;
+                    feldback[spalte + 1, zeile] = 3;
+                    feldback[spalte + 2, zeile] = 3;
+
+                    feldfront[spalte + 2, zeile + 2] = "3";
+                    feldfront[spalte + 3, zeile + 2] = "3";
+                    feldfront[spalte + 4, zeile + 2] = "3";
+                    break;
+                }
             }
         }
         static void AnzeigeFeld(string[,] feldfront, string message)
