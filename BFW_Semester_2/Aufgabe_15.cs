@@ -53,7 +53,7 @@ namespace BFW_Semester_2
                     break;
                 }
             }
-            if (zerstört.Count != 4)
+            if (zerstört.Count < 4)
             {
                 Console.Clear();
                 Console.WriteLine("Leider haben Sie verloren :(");
@@ -75,8 +75,6 @@ namespace BFW_Semester_2
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine(message);
-
-
         }
         static Tuple<Alf, int> Input()
         {
@@ -125,50 +123,50 @@ namespace BFW_Semester_2
             int zeile = tuple.Item2 - 1;
             string ship = string.Empty;
 
-            if (feldback[spalte, zeile] == 0)
+            switch (feldback[spalte, zeile])
             {
-                feldfront[spalte + 2, zeile + 2] = "-";
-                return "Platsch. Sie haben nichts getroffen.";
-            }
-            else if (feldback[spalte, zeile] == 9)
-                return "Ziel wurde schon getroffen!";
+                case 0:
+                    feldfront[spalte + 2, zeile + 2] = "-";
+                    return "Platsch. Sie haben nichts getroffen.";
 
-            else if (feldback[spalte, zeile] == 2)
-            {
-                s2++;
-                if (s2 == 2)
-                {
-                    ship = "Schnellboot versenkt.";
-                    zerstört.Add("Schnellboot, ");
-                }
-            }
-            else if (feldback[spalte, zeile] == 3)
-            {
-                s3++;
-                if (s3 == 3)
-                {
-                    ship = "Fregatte versenkt.";
-                    zerstört.Add("Fregatte, ");
-                }
-            }
-            else if (feldback[spalte, zeile] == 4)
-            {
-                s4++;
-                if (s4 == 4)
-                {
-                    ship = "Kreuzer versenkt.";
-                    zerstört.Add("Kreuzer, ");
-                }
-            }
-            else if (feldback[spalte, zeile] == 5)
-            {
-                s5++;
-                if (s5 == 5)
-                {
-                    ship = "Schlachtschiff versenkt.";
-                    zerstört.Add("Schlachtschiff, ");
-                }
+                case 9:
+                    return "Ziel wurde schon getroffen!";
 
+                case 2:
+                    s2++;
+                    if (s2 == 2)
+                    {
+                        ship = "Schnellboot versenkt.";
+                        zerstört.Add("Schnellboot, ");
+                    }
+                    break;
+
+                case 3:
+                    s3++;
+                    if (s3 == 3)
+                    {
+                        ship = "Fregatte versenkt.";
+                        zerstört.Add("Fregatte, ");
+                    }
+                    break;
+
+                case 4:
+                    s4++;
+                    if (s4 == 4)
+                    {
+                        ship = "Kreuzer versenkt.";
+                        zerstört.Add("Kreuzer, ");
+                    }
+                    break;
+
+                case 5:
+                    s5++;
+                    if (s5 == 5)
+                    {
+                        ship = "Schlachtschiff versenkt.";
+                        zerstört.Add("Schlachtschiff, ");
+                    }
+                    break;
             }
             feldback[spalte, zeile] = 9;
             feldfront[spalte + 2, zeile + 2] = "X";
