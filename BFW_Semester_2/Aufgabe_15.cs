@@ -128,10 +128,8 @@ namespace BFW_Semester_2
                 case 0:
                     feldfront[spalte + 2, zeile + 2] = "-";
                     return "Platsch. Sie haben nichts getroffen.";
-
                 case 9:
                     return "Ziel wurde schon getroffen!";
-
                 case 2:
                     s2++;
                     if (s2 == 2)
@@ -140,7 +138,6 @@ namespace BFW_Semester_2
                         zerstört.Add("Schnellboot, ");
                     }
                     break;
-
                 case 3:
                     s3++;
                     if (s3 == 3)
@@ -149,7 +146,6 @@ namespace BFW_Semester_2
                         zerstört.Add("Fregatte, ");
                     }
                     break;
-
                 case 4:
                     s4++;
                     if (s4 == 4)
@@ -158,7 +154,6 @@ namespace BFW_Semester_2
                         zerstört.Add("Kreuzer, ");
                     }
                     break;
-
                 case 5:
                     s5++;
                     if (s5 == 5)
