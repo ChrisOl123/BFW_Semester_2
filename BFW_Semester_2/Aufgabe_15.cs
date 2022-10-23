@@ -41,10 +41,10 @@ namespace BFW_Semester_2
                 { 0 , 0 , 0 , 4 , 0 , 0 , 0 , 0 , 0 , 0 },
                 { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
             };
-            for (int i = spielzüge; i > 0;i--)
+            for (int i = spielzüge; i > 0; i--)
             {
                 AnzeigeFeld(feldfront, message);
-                Console.WriteLine("Sie habe {0} Schüsse übrig.",i);
+                Console.WriteLine("Sie habe {0} Schüsse übrig.", i);
                 message = Verarbeitung(Input(), feldback, feldfront);
                 if (zerstört.Count == 4)
                 {
@@ -76,7 +76,7 @@ namespace BFW_Semester_2
             Console.WriteLine();
             Console.WriteLine(message);
 
-            
+
         }
         static Tuple<Alf, int> Input()
         {
@@ -123,68 +123,56 @@ namespace BFW_Semester_2
         {
             int spalte = (int)tuple.Item1 - 1;
             int zeile = tuple.Item2 - 1;
+            string ship = string.Empty;
 
             if (feldback[spalte, zeile] == 0)
             {
                 feldfront[spalte + 2, zeile + 2] = "-";
                 return "Platsch. Sie haben nichts getroffen.";
-
             }
+            else if (feldback[spalte, zeile] == 9)
+                return "Ziel wurde schon getroffen!";
+
             else if (feldback[spalte, zeile] == 2)
             {
                 s2++;
-                string ship = string.Empty;
                 if (s2 == 2)
                 {
                     ship = "Schnellboot versenkt.";
                     zerstört.Add("Schnellboot, ");
                 }
-                feldback[spalte, zeile] = 9;
-                feldfront[spalte + 2, zeile + 2] = "X";
-                return string.Format("Treffer! {0}", ship);
             }
             else if (feldback[spalte, zeile] == 3)
             {
                 s3++;
-                string ship = string.Empty;
                 if (s3 == 3)
                 {
                     ship = "Fregatte versenkt.";
                     zerstört.Add("Fregatte, ");
                 }
-
-                feldback[spalte, zeile] = 9;
-                feldfront[spalte + 2, zeile + 2] = "X";
-                return string.Format("Treffer! {0}", ship);
             }
             else if (feldback[spalte, zeile] == 4)
             {
                 s4++;
-                string ship = string.Empty;
                 if (s4 == 4)
                 {
                     ship = "Kreuzer versenkt.";
                     zerstört.Add("Kreuzer, ");
                 }
-                feldback[spalte, zeile] = 9;
-                feldfront[spalte + 2, zeile + 2] = "X";
-                return string.Format("Treffer! {0}", ship);
             }
             else if (feldback[spalte, zeile] == 5)
             {
                 s5++;
-                string ship = string.Empty;
                 if (s5 == 5)
                 {
                     ship = "Schlachtschiff versenkt.";
                     zerstört.Add("Schlachtschiff, ");
                 }
-                feldback[spalte, zeile] = 9;
-                feldfront[spalte + 2, zeile + 2] = "X";
-                return string.Format("Treffer! {0}", ship);
+
             }
-            else
-                return "Ziel wurde schon getroffen!";
+            feldback[spalte, zeile] = 9;
+            feldfront[spalte + 2, zeile + 2] = "X";
+            return string.Format("Treffer! {0}", ship);
         }
     }
 }
