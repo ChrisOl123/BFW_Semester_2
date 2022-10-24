@@ -6,12 +6,12 @@ namespace BFW_Semester_2
     enum Alf { empty, A, B, C, D, E, F, G, H, I, J }
     class Aufgabe_15
     {
-        public static int s2 = 0, s3 = 0, s4 = 0, s5 = 0;
-        public static List<string> zerstört = new List<string>();
+        public static int s2 = 0, s3 = 0, s4 = 0, s5 = 0;           // Erstellen der Klassenvariable
+        public static List<string> zerstört = new List<string>();   // Erstellen der zerstörten Schiffe Liste
 
         public static void Start()
         {
-            int spielzüge = 50;
+            int spielzüge = 50;                                   // Wieviele Spielzüge erlaubt sind
 
             string message = "Herzlich Willkommen!";
             string[,] feldfront = new string[12, 12]
@@ -28,7 +28,7 @@ namespace BFW_Semester_2
                 {"H","-","O","O","O","O","O","O","O","O","O","O"},
                 {"I","-","O","O","O","O","O","O","O","O","O","O"},
                 {"J","-","O","O","O","O","O","O","O","O","O","O"}
-            };
+            };          // Feld das angezeigt wird
             int[,] feldback = new int[10, 10] {
                 { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
                 { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },                  // Schlachtschiff 5 Felder      Kreuzer 4 Felder        Fregatte 3 Felder          Schnellboot 2 Felder    
@@ -40,15 +40,15 @@ namespace BFW_Semester_2
                 { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
                 { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
                 { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-            };
+            };                 // Feld das im Hintergrund läuft
 
-            Randomizer(feldback, feldfront);
+            Randomizer(feldback, feldfront);                      // Methode zum erstellen der Random Schiff belegung
             for (int i = spielzüge; i > 0; i--)
             {
-                AnzeigeFeld(feldfront, message);
-                Console.WriteLine("Sie habe {0} Schüsse übrig.", i);
+                AnzeigeFeld(feldfront, message);                      // Anzeige des Feldes mit den Nachrichten zum Spiel
+                Console.WriteLine("Sie habe {0} Schüsse übrig.", i);        
                 message = Verarbeitung(Input(), feldback, feldfront);
-                if (zerstört.Count == 4)
+                if (zerstört.Count == 4)                              // Wenn alle 4 Schiffe zerstört sind, ist das spiel Gewonnen
                 {
                     Console.Clear();
                     Console.WriteLine("Sie Haben alle Schiffe zerstört. SIE HABEN GEWONNEN!!!");
@@ -57,23 +57,23 @@ namespace BFW_Semester_2
             }
             if (zerstört.Count < 4)
             {
-                Console.Clear();
+                Console.Clear();                                     // Wenn die Spielzüge aufgebraucht sind hat man verloren
                 Console.WriteLine("Leider haben Sie verloren :(");
             }
         }
         static void Randomizer(int[,] feldback, string[,] feldfront)
         {
             int counter = 0;
-            int[] schiffe = new int[] { 5,4,3,2};         
+            int[] schiffe = new int[] { 5, 4, 3, 2 };
             while (counter < 4)                       // So lange bis alle 4 Schiffe erstellt worden sind
             {
                 int ship = schiffe[counter];
                 int c = 0;
                 int vOrH = new Random().Next(0, 2);  // 1 = Vertikal, 2 = Hoizontal
                 int spalte = new Random().Next() % (11 - ship);
-                int zeile = new Random(DateTime.Now.Millisecond).Next() % (11-ship);
+                int zeile = new Random(DateTime.Now.Millisecond).Next() % (11 - ship);
 
-                if (vOrH == 1)
+                if (vOrH == 1)                   // Wenn true, dann wird das Schiff Vertikal ausgerichtet
                 {
                     for (int j = 0; j < ship; j++)
                     {
@@ -93,14 +93,12 @@ namespace BFW_Semester_2
 
                     }
                 }
-                else
+                else        // else dann, wird das Schiff Horizontal ausgerichtet
                 {
-                    for (int j = 0; j < ship; j++)
+                    for (int j = 0; j < ship; j++)               
                     {
                         if (feldback[spalte, zeile + j] < 1)
-                        {
                             c++;
-                        }
                         else
                             break;
                         if (c == ship)
@@ -112,7 +110,6 @@ namespace BFW_Semester_2
                             }
                             counter++;
                         }
-
                     }
                 }
             }
