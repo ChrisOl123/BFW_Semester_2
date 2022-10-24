@@ -63,22 +63,57 @@ namespace BFW_Semester_2
         }
         static void Randomizer(int[,] feldback, string[,] feldfront)
         {
-            while (true)
+            int counter = 0;
+            int[] schiffe = new int[] { 5,4,3,2};         
+            while (counter < 4)                       // So lange bis alle 4 Schiffe erstellt worden sind
             {
-                int vOrH = new Random(DateTime.Now.Millisecond).Next(0, 2);  // 1 = Vertikal, 2 = Hoizontal
-                int spalte = new Random().Next(0, 8);
-                int zeile = new Random(DateTime.Now.Millisecond).Next() % 8;
+                int ship = schiffe[counter];
+                int c = 0;
+                int vOrH = new Random().Next(0, 2);  // 1 = Vertikal, 2 = Hoizontal
+                int spalte = new Random().Next() % (11 - ship);
+                int zeile = new Random(DateTime.Now.Millisecond).Next() % (11-ship);
 
-                if (feldback[spalte, zeile] == 0 && feldback[spalte + 1, zeile] == 0 && feldback[spalte + 2, zeile] == 0)
+                if (vOrH == 1)
                 {
-                    feldback[spalte, zeile] = 3;
-                    feldback[spalte + 1, zeile] = 3;
-                    feldback[spalte + 2, zeile] = 3;
+                    for (int j = 0; j < ship; j++)
+                    {
+                        if (feldback[spalte + j, zeile] < 1)
+                            c++;
+                        else
+                            break;
+                        if (c == ship)
+                        {
+                            for (int i = 0; i < ship; i++)
+                            {
+                                feldback[spalte + i, zeile] = ship;
+                                //feldfront[spalte + (i + 2), zeile + 2] = String.Format("{0}", schiffe[counter]);        //zum Anzeigen der Schiffe
+                            }
+                            counter++;
+                        }
 
-                    feldfront[spalte + 2, zeile + 2] = "3";
-                    feldfront[spalte + 3, zeile + 2] = "3";
-                    feldfront[spalte + 4, zeile + 2] = "3";
-                    break;
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < ship; j++)
+                    {
+                        if (feldback[spalte, zeile + j] < 1)
+                        {
+                            c++;
+                        }
+                        else
+                            break;
+                        if (c == ship)
+                        {
+                            for (int i = 0; i < ship; i++)
+                            {
+                                feldback[spalte, zeile + i] = ship;
+                                //feldfront[spalte + 2, zeile + (i + 2)] = String.Format("{0}", schiffe[counter]);        //zum Anzeigen der Schiffe
+                            }
+                            counter++;
+                        }
+
+                    }
                 }
             }
         }
