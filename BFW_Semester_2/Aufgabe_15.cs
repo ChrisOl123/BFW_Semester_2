@@ -30,7 +30,7 @@ namespace BFW_Semester_2
                 {"J","-","O","O","O","O","O","O","O","O","O","O"}
             };          // Feld das angezeigt wird
             int[,] feldback = new int[10, 10] {
-                { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
+                { 4 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
                 { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },                  // Schlachtschiff 5 Felder      Kreuzer 4 Felder        Fregatte 3 Felder          Schnellboot 2 Felder    
                 { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
                 { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
@@ -46,7 +46,7 @@ namespace BFW_Semester_2
             for (int i = spielzüge; i > 0; i--)
             {
                 AnzeigeFeld(feldfront, message);                      // Anzeige des Feldes mit den Nachrichten zum Spiel
-                Console.WriteLine("Sie habe {0} Schüsse übrig.", i);        
+                Console.WriteLine("Sie habe {0} Schüsse übrig.", i);
                 message = Verarbeitung(Input(), feldback, feldfront);
                 if (zerstört.Count == 4)                              // Wenn alle 4 Schiffe zerstört sind, ist das spiel Gewonnen
                 {
@@ -67,49 +67,37 @@ namespace BFW_Semester_2
             int[] schiffe = new int[] { 5, 4, 3, 2 };
             while (counter < 4)                       // So lange bis alle 4 Schiffe erstellt worden sind
             {
+                int x = 0;
+                int y = 0;
                 int ship = schiffe[counter];
                 int c = 0;
                 int vOrH = new Random().Next(0, 2);  // 1 = Vertikal, 2 = Hoizontal
                 int spalte = new Random().Next() % (11 - ship);
                 int zeile = new Random(DateTime.Now.Millisecond).Next() % (11 - ship);
 
-                if (vOrH == 1)                   // Wenn true, dann wird das Schiff Vertikal ausgerichtet
+                for (int j = 0; j < ship; j++)
                 {
-                    for (int j = 0; j < ship; j++)
+                    if (vOrH == 1)
+                        x = j;                          // Vertikal: x = j
+                    else
+                        y = j;                          // Horizontal: y = j
+                    if (feldback[spalte + x, zeile + y] < 1)
+                        c++;
+                    else
+                        break;
+                    if (c == ship)                      // Wenn alle geplanten Felder überprüft worden sind erstelle das Schiff
                     {
-                        if (feldback[spalte + j, zeile] < 1)
-                            c++;
-                        else
-                            break;
-                        if (c == ship)
+                        for (int i = 0; i < ship; i++)
                         {
-                            for (int i = 0; i < ship; i++)
-                            {
-                                feldback[spalte + i, zeile] = ship;
-                                //feldfront[spalte + (i + 2), zeile + 2] = String.Format("{0}", schiffe[counter]);        //zum Anzeigen der Schiffe
-                            }
-                            counter++;
-                        }
+                            if (vOrH == 1)
+                                x = i;
+                            else
+                                y = i;
 
-                    }
-                }
-                else        // else dann, wird das Schiff Horizontal ausgerichtet
-                {
-                    for (int j = 0; j < ship; j++)               
-                    {
-                        if (feldback[spalte, zeile + j] < 1)
-                            c++;
-                        else
-                            break;
-                        if (c == ship)
-                        {
-                            for (int i = 0; i < ship; i++)
-                            {
-                                feldback[spalte, zeile + i] = ship;
-                                //feldfront[spalte + 2, zeile + (i + 2)] = String.Format("{0}", schiffe[counter]);        //zum Anzeigen der Schiffe
-                            }
-                            counter++;
+                            feldback[spalte + x, zeile + y] = ship;
+                            //feldfront[spalte + (x + 2), zeile + (y + 2)] = String.Format("{0}", schiffe[counter]);        //zum Anzeigen der Schiffe
                         }
+                        counter++;
                     }
                 }
             }
@@ -123,7 +111,6 @@ namespace BFW_Semester_2
                     Console.Write(" " + feldfront[i, 0 + i2]);
                 Console.WriteLine();
             }
-            Console.WriteLine();
             Console.Write("Zerstörte Schiffe: ");
             foreach (var element in zerstört)
                 Console.Write(element);
