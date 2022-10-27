@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace BFW_Semester_2
 {
@@ -71,13 +72,13 @@ namespace BFW_Semester_2
                 int y = 0;
                 int ship = schiffe[counter];
                 int c = 0;
-                int vOrH = new Random().Next(0, 2);  // 1 = Vertikal, 2 = Hoizontal
+                int verticalOrHorizontal = new Random().Next(0, 2);  // 1 = Vertikal, 2 = Hoizontal
                 int spalte = new Random().Next() % (11 - ship);
                 int zeile = new Random(DateTime.Now.Millisecond).Next() % (11 - ship);
 
                 for (int j = 0; j < ship; j++)
                 {
-                    if (vOrH == 1)
+                    if (verticalOrHorizontal == 1)
                         x = j;                          // Vertikal: x = j
                     else
                         y = j;                          // Horizontal: y = j
@@ -87,12 +88,12 @@ namespace BFW_Semester_2
                         break;
                     if (c == ship)                      // Wenn alle geplanten Felder überprüft worden sind erstelle das Schiff
                     {
-                        for (int i = 0; i < ship; i++)
+                        for (int i = 0; i < ship; i++)  
                         {
-                            if (vOrH == 1)
+                            if (verticalOrHorizontal == 1)
                                 x = i;
                             else
-                                y = i;
+                                y = i;                                 // Schiff erstellung
 
                             feldback[spalte + x, zeile + y] = ship;
                             //feldfront[spalte + (x + 2), zeile + (y + 2)] = String.Format("{0}", schiffe[counter]);        //zum Anzeigen der Schiffe
@@ -104,54 +105,55 @@ namespace BFW_Semester_2
         }
         static void AnzeigeFeld(string[,] feldfront, string message)
         {
-            Console.Clear();
-            for (int i = 0; i < 12; i++)
+            Console.Clear();                // Cleart das alte Feld
+            for (int i = 0; i < 12; i++)   // Zeigt alle Spalten des Feld Arrays an
             {
-                for (int i2 = 0; i2 < 12; i2++)
+                for (int i2 = 0; i2 < 12; i2++)                 // Zeigt alle Zeilen des Feld Arrays an
                     Console.Write(" " + feldfront[i, 0 + i2]);
                 Console.WriteLine();
             }
-            Console.Write("Zerstörte Schiffe: ");
-            foreach (var element in zerstört)
+            Console.Write("Zerstörte Schiffe: ");  
+            foreach (var element in zerstört)      // Zeigt die liste der zerstörten Schiffe an
                 Console.Write(element);
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine(message);
+            Console.WriteLine(message);            // Gibt die Nachricht des letzten Zuges an
         }
         static Tuple<Alf, int> Input()
         {
             while (true)
             {
                 Array arr = Enum.GetValues(typeof(Alf));
-                int temp = 0;
                 Alf buchstabe = Alf.empty;
                 bool b = false;
 
                 Console.WriteLine("Welches Feld möchten Sie bombardieren? [Buchstabe][Zahl] z.B. A1.");
                 string input = Console.ReadLine().Trim();
-                if (input != string.Empty)
+                if (input != string.Empty)           // Wenn etwas in der Eingabe steht geh rein
                 {
                     foreach (Alf element in arr)
-                    {
-                        if (element.ToString() == input[0].ToString().ToUpper() && input.Length <= 3)
+                    {                                                                           
+                        if (element.ToString() == input[0].ToString().ToUpper() && input.Length <= 3)// Erstes Element der Eingabe überprüfen
                         {
-                            buchstabe = element;
+                            buchstabe = element;                                
                             b = true;
                         }
                     }
                     if (b)
                     {
+                        int temp = 0;
                         for (int i = 0; i < input.Length; i++)
                         {
-                            if (int.TryParse(input[i].ToString(), out int zahl))
+
+                            if (int.TryParse(input[i].ToString(), out int zahl))  // 2. und 3. Element nach einer Zahl überprüfen
                             {
                                 temp *= 10;
                                 temp += zahl;
                             }
                         }
-                        if (temp > 0 && temp <= 10)
+                        if (temp > 0 && temp <= 10) // Zahl nach korrektheit überrpüfen
                         {
-                            Tuple<Alf, int> tuple = new Tuple<Alf, int>(buchstabe, temp);
+                            Tuple<Alf, int> tuple = new Tuple<Alf, int>(buchstabe, temp); // Erstelle ein Tupel mit dem Buchstaben und der Zahl
                             return tuple;
                         }
                     }
@@ -162,10 +164,10 @@ namespace BFW_Semester_2
         static string Verarbeitung(Tuple<Alf, int> tuple, int[,] feldback, string[,] feldfront)
         {
             int spalte = (int)tuple.Item1 - 1;
-            int zeile = tuple.Item2 - 1;
+            int zeile = tuple.Item2 - 1;       // Erstellen der passenden Variablen damit sie mit dem feld übereinstimmen
             string ship = string.Empty;
 
-            switch (feldback[spalte, zeile])
+            switch (feldback[spalte, zeile]) // Die Felder nach Zahlen suchen 2-5 sind jeweils Schiffe
             {
                 case 0:
                     feldfront[spalte + 2, zeile + 2] = "-";
@@ -173,11 +175,11 @@ namespace BFW_Semester_2
                 case 9:
                     return "Ziel wurde schon getroffen!";
                 case 2:
-                    s2++;
+                    s2++;         // Globale Variable wird genutzt um die Anzahl der treffer für die Schiffe zu zählen
                     if (s2 == 2)
                     {
                         ship = "Schnellboot versenkt.";
-                        zerstört.Add("Schnellboot, ");
+                        zerstört.Add("Schnellboot, ");        // Fügt das versenkte Schiff zur Zerstört Liste zu
                     }
                     break;
                 case 3:
@@ -205,8 +207,8 @@ namespace BFW_Semester_2
                     }
                     break;
             }
-            feldback[spalte, zeile] = 9;
-            feldfront[spalte + 2, zeile + 2] = "X";
+            feldback[spalte, zeile] = 9;            // 9 bedeutet das dieses Feld mindestens ein mal getroffen wurde
+            feldfront[spalte + 2, zeile + 2] = "X"; // der Treffer wird in der Anzeige mit einem X markiert
             return string.Format("Treffer! {0}", ship);
         }
     }
