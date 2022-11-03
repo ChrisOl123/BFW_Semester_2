@@ -6,8 +6,8 @@ namespace BFW_Semester_2
     {
         public static void Start()
         {
-            bool round = true;
-            while (round)
+            bool runde = true;
+            while (runde)
             {
                 Tuple<int, int> antworten = Verarbeitung(Möglichkeiten());
                 Console.Clear();
@@ -15,7 +15,7 @@ namespace BFW_Semester_2
                 Console.WriteLine("Falsch = {0}", antworten.Item2);
                 Console.WriteLine();
                 Console.WriteLine("Noch eine Runde? [Y] ja | [N] nein ");
-                while (round)
+                while (runde)
                 {
                     string input = Console.ReadLine().Trim().ToUpper();
                     if (input == "Y")
@@ -24,7 +24,7 @@ namespace BFW_Semester_2
                         break;
                     }
                     else if (input == "N")
-                        round = false;
+                        runde = false;
                     else
                         Console.WriteLine("Invalide Eingabe!");
                 }
