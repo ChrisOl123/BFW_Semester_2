@@ -31,7 +31,7 @@ namespace BFW_Semester_2
                 {"J","-","O","O","O","O","O","O","O","O","O","O"}
             };          // Feld das angezeigt wird
             int[,] feldback = new int[10, 10] {
-                { 4 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
+                { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
                 { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },                  // Schlachtschiff 5 Felder      Kreuzer 4 Felder        Fregatte 3 Felder          Schnellboot 2 Felder    
                 { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
                 { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
@@ -47,7 +47,7 @@ namespace BFW_Semester_2
             for (int i = spielzüge; i > 0; i--)
             {
                 AnzeigeFeld(feldfront, message);                      // Anzeige des Feldes mit den Nachrichten zum Spiel
-                Console.WriteLine("Sie habe {0} Schüsse übrig.", i);
+                Console.WriteLine("Sie haben {0} Schüsse übrig.", i);
                 message = Verarbeitung(Input(), feldback, feldfront);
                 if (zerstört.Count == 4)                              // Wenn alle 4 Schiffe zerstört sind, ist das spiel Gewonnen
                 {
