@@ -96,7 +96,7 @@ namespace BFW_Semester_2
                                 y = i;                                 // Schiff erstellung
 
                             feldback[spalte + x, zeile + y] = ship;
-                            //feldfront[spalte + (x + 2), zeile + (y + 2)] = String.Format("{0}", schiffe[counter]);        //zum Anzeigen der Schiffe
+                            feldfront[spalte + (x + 2), zeile + (y + 2)] = String.Format("{0}", schiffe[counter]);        //zum Anzeigen der Schiffe
                         }
                         counter++;
                     }
