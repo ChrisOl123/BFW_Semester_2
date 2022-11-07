@@ -36,8 +36,11 @@ namespace BFW_Semester_2
                 new string[] {"Aus wie vielen Einzelknochen besteht eine menschliche Hand?","17","27","32","21",/*Richtige Antwort->*/"27"},
                 new string[] {"Wie hoch ist der Eiffelturm?","250m","270m","300m",/*Richtige Antwort->*/"300m" },
                 new string[] {"Es gibt in unseren Sonnensystem 9 Platen. Stimmts?","Ja","Nein",/*Richtige Antwort->*/"Nein"},
-                new string[] {"Wie viele Joints raucht Snoop Dog täglich?","13", "2", "3", "40", "35", "60","79", "81", "90",/*Richtige Antwort->*/"81" }
-            };
+                new string[] {"Wie viele Joints raucht Snoop Dog täglich?","13", "2", "3", "40", "35", "60","79", "81", "90",/*Richtige Antwort->*/"81" },
+                new string[] {"Wie viele Tasten hat ein Klavier?","88 Tasten","72 Tasten","80 Tasten",/*Richtige Antwort->*/"88 Tasten"},
+                new string[] {"Welche Blumenzwiebeln wurden früher als Zahlungsmittel genutzt?", "Krokusse", "Lilien", "Gladiolen", "Tulpen",/*Richtige Antwort->*/"Tulpen"},
+                new string[] {"Was ist ein Falchion?", "Ein Schwert", "Ein Tier", "Ein Kleidungsstück",/*Richtige Antwort->*/"Ein Schwert"},
+                new string[] {"Ist es wirklich wahr, dass im Hochmittelalter in Europa im Durchschnitt auf zwei Menschen eine Kirche kam? ","Ja","Nein",/*Richtige Antwort->*/"Ja"}            };
             return fragen;
         }
         static Tuple<int, int> Verarbeitung(string[][] fragen)
@@ -57,7 +60,7 @@ namespace BFW_Semester_2
                     for (int i2 = 1; i2 < fragen[i].Length - 1; i2++)
                     {
                         if (fragen[i][i2] == fragen[i][fragen[i].Length - 1] && b == true)
-                            pfeil = "<-- Richtig";
+                            pfeil = "<--";
                         Console.WriteLine(String.Format("[{0}] = {1} {2}", i2, fragen[i][i2], pfeil));
                         pfeil = string.Empty;
                     }
