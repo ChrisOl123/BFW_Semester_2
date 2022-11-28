@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BFW_Semester_2
 {
-    class Aufgabe_9B
+    internal class Aufgabe_9B
     {
         public static void Start()
 

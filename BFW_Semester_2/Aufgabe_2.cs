@@ -2,7 +2,7 @@
 
 namespace BFW_Semester_2
 {
-    class Aufgabe_2
+    internal class Aufgabe_2
     {
         public static void Start()
         {

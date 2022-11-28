@@ -4,7 +4,7 @@ using System.IO;
 
 namespace BFW_Semester_2
 {
-    class Aufgabe_17                          // Pfad @"C:\Schule\2. Semester\C#\Aufgabe17.txt"    Home
+    internal class Aufgabe_17                          // Pfad @"C:\Schule\2. Semester\C#\Aufgabe17.txt"    Home
     {                                         // Pfad @"U:\Csharp\Aufgabe17.txt"
         static List<Tuple<string, List<string>>> mainList = new List<Tuple<string, List<string>>>();
         public static void Start()

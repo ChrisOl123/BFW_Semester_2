@@ -6,7 +6,7 @@ namespace BFW_Semester_2
     enum Gender { Männlich, Weiblich, Divers }
     enum dire { West, East, South, North }
     enum Meal { Soup, Burger, Pizza }
-    class Aufgabe_7
+    internal class Aufgabe_7
     {
         public static void Start()
         {

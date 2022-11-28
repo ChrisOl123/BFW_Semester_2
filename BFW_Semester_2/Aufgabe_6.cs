@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BFW_Semester_2
 {
-    class Aufgabe_6
+    internal class Aufgabe_6
     {
         enum Countries { Deutschland, Frankreich, Polen, Italien, Griechenland, Schweiz };
         public static void Start()

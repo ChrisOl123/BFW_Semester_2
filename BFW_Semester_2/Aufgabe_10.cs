@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BFW_Semester_2
 {
-    class Aufgabe_10
+    internal class Aufgabe_10
     {
         enum Mög { Schere, Stein, Papier, Echse, Spock }
         static List<Tuple<Mög, Mög, string>> list = new List<Tuple<Mög, Mög, string>>() {

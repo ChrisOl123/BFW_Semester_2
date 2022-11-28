@@ -5,7 +5,7 @@ using System.Xml.Linq;
 namespace BFW_Semester_2
 {
     enum Alf { empty, A, B, C, D, E, F, G, H, I, J }
-    class Aufgabe_15
+    internal class Aufgabe_15
     {
         public static int s2 = 0, s3 = 0, s4 = 0, s5 = 0;           // Erstellen der Klassenvariable
         public static List<string> zerstört = new List<string>();   // Erstellen der zerstörten Schiffe Liste
