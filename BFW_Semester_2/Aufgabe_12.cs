@@ -16,7 +16,7 @@ namespace BFW_Semester_2
                 Console.WriteLine("Bitte geben Sie die erste Zahl ein:");
                 try
                 {
-                    input_1 = Convert.ToInt32(Console.ReadLine());                                           // Eingabe Zahl, falls keine Zahl eingegeben wird springe in das catch scope
+                    input_1 = Convert.ToInt32(Console.ReadLine()); // Eingabe Zahl, falls keine Zahl eingegeben wird springe in das catch scope
                 }
                 catch
                 {
@@ -27,10 +27,10 @@ namespace BFW_Semester_2
                 {
                     Console.WriteLine("Bitte geben Sie das Rechenzeichen ein:");
                     try
-                    {
-                        input_2 = Console.ReadLine();
+                    { // Wenn die Eingabe ein Rechenzeichen ist spring raus ansonsten verursache eine Exeption
+                        input_2 = Console.ReadLine(); 
                         if (input_2 == "/" || input_2 == "+" || input_2 == "*" || input_2 == "-")
-                              break;                                                                                  // Wenn die Eingabe ein Rechenzeichen ist spring raus ansonsten verursache eine Exeption
+                              break;  
                         else
                             erg = Convert.ToInt32(input_2) / 0;
                     }

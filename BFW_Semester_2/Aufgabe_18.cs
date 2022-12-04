@@ -9,7 +9,6 @@ namespace BFW_Semester_2
         static string einfügen = string.Empty;
         static string pfad = @"C:\Users\Chris\source\repos\BFW_Semester_2\Aufgabe_18\Basis";
         static List<string> ordner = new List<string>();
-
         public static void Start()
         {
             while (true)
@@ -18,7 +17,7 @@ namespace BFW_Semester_2
                 Input(ShowOrdner(pfad));
             }
         }
-        static int ShowOrdner(string pfad) // Zeigt das Menü and und alle Ordner in dem Verzeichnis
+        static int ShowOrdner(string pfad) // Zeigt das Menü an und alle Ordner in dem Verzeichnis
         {
             Console.WriteLine(pfad); 
             Console.WriteLine("Zum Öffnen Geben Sie die Zahl ein.");
@@ -27,16 +26,16 @@ namespace BFW_Semester_2
             Console.WriteLine("[+] Ordner erstellen.");
             Console.WriteLine("[-] Ordner löschen.");
             Console.WriteLine("[#] Ordner verschieben.");
-            if (einfügen != string.Empty)   // Wenn die Variable "einfügen" leer is soll das nicht angezeigt werden
+            if (einfügen != string.Empty)   // Wenn die Variable "einfügen" leer ist, soll das nicht angezeigt werden
                 Console.WriteLine("[*] Ordner einfügen.");
             Console.WriteLine();
             Console.WriteLine("Enthaltene Ordner:");
             ordner = new List<string>();
             foreach (var element in Directory.GetDirectories(pfad))
-                ordner.Add(element.Substring(element.LastIndexOf(@"\") + 1)); // Speicher alle befindlichen Ordner in eine Liste
+                ordner.Add(element.Substring(element.LastIndexOf(@"\") + 1)); // Speichert alle befindlichen Ordner in eine Liste
             for (int i = 0; i < ordner.Count; i++)
                 Console.WriteLine("[{0}] {1}", (i + 1), ordner[i]); // Gibt die Liste aus mit allen Ordner in dem jeweiligen Pfad
-            return ordner.Count; // Gibt die Zahl zurück wieviele Ordner gespeichert sind in der Liste
+            return ordner.Count; // Gibt die Zahl zurück wiev iele Ordner gespeichert sind in der Liste
         }
         static void Input(int anzahl)  // Nimmt Eingaben entgegen und verarbeitet diese
         {
@@ -46,7 +45,7 @@ namespace BFW_Semester_2
                 string input = Console.ReadLine();
                 if (int.TryParse(input, out eingabe) && eingabe <= anzahl && eingabe > 0) // Überprüft die Eingabe
                 {
-                    pfad += "\\" + ordner[eingabe - 1]; // Geht in den Ordner hinein anhand der ihm gegebenen Nummer
+                    pfad += "\\" + ordner[eingabe - 1]; // Geht in den Ordner hinein anhand der ihm übergebenen Nummer
                     break;
                 }
                 else if (input == ".") // Geht einen Ordner zurück
