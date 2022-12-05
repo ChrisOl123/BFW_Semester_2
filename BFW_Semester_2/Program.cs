@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Aufgabe_19.Start();
+            Schulaufgabe.Start();
         }
     }
 }
