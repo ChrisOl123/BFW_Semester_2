@@ -50,7 +50,7 @@ namespace BFW_Semester_2
                 }
                 else if (input == ".") // Geht einen Ordner zurück
                 {
-                    if (pfad.Length > 60) // Limitiert das herausgehen bis zum Basisordner
+                    if (pfad.Length > 0) // Limitiert das herausgehen bis zum Basisordner
                         pfad = pfad.Substring(0, pfad.LastIndexOf(@"\")); // Entfernt den letzten Ordnername aus dem Pfad
                     break;
                 }

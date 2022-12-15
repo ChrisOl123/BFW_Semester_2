@@ -23,6 +23,7 @@ namespace BFW_Semester_2
             spieler.Speak("Auf Wiedersehen!"); // Was sagt der Spieler zum abschluss
         }
     }
+    [Serializable]
     class Human
     {
         public DateTime Birth;
